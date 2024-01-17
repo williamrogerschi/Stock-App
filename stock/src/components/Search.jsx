@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { XIcon, SearchIcon } from '@heroicons/react/solid';
 import SearchResults from './SearchResults';
 import ThemeContext from '../context/ThemeContext'
-import { searchSymbols } from '../api/stock-api'
+import { searchSymbol } from '../api/stock-api'
 
 const Search = () => {
     const [input, setInput] = useState('')
@@ -18,7 +18,7 @@ const Search = () => {
     const updateBestMatches = async () => {
         try {
             if(input) {
-                const searchResults = await searchSymbols(input)
+                const searchResults = await searchSymbol(input)
                 const result = searchResults.result
                 setBestMatches(result)
             }
