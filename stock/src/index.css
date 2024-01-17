@@ -6,12 +6,11 @@ font-family: 'Michroma', sans-serif;
 font-family: 'Space Grotesk', sans-serif;
 font-family: 'Work Sans', sans-serif; */
 
-
-
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
-  --primary-font-family: 'Archivo', sans-serif;
---secondary-font-family: 'Bricolage Grotesque', sans-serif;
 --background: blanchedalmond;
 --primary-text-color: black;
 --toggle-bg: ;

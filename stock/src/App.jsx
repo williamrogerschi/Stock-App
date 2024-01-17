@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import './App.css'
+import Dashboard from './components/Dashboard'
 
 function App() {
 
 
   return (
-    <div className='app'>
-      <h1>This is main</h1>
-    </div>
+    <Dashboard />
   )
 }
 
