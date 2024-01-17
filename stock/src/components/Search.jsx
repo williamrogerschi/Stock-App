@@ -10,10 +10,6 @@ const Search = () => {
 
     const {darkMode } =useContext(ThemeContext)
 
-    const clear = () => {
-        setInput('')
-        setBestMatches([])
-    }
 
     const updateBestMatches = async () => {
         try {
@@ -27,6 +23,12 @@ const Search = () => {
             console.log(error)
         }
     }
+
+    const clear = () => {
+        setInput('')
+        setBestMatches([])
+    }
+
 
     
   return (
