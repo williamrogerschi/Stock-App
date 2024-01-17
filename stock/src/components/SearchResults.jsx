@@ -7,7 +7,6 @@ const SearchResults = ({ results }) => {
   const {darkMode } = useContext(ThemeContext)
 
 
-
   return (
     <ul className={`absolute top-12 border-2 w-full rounded-md h-64 overflow-y-scroll  custom-scrollbar ${darkMode ? 'bg-gray-900 border-gray-800 custom-scrollbar custom-scrollbar-dark' : 'bg-white border-neutral-200 custom-scrollbar'}`}>
         {results.map((item) => {
