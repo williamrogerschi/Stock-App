@@ -10,8 +10,28 @@ font-family: 'Work Sans', sans-serif; */
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #8880d4;
+    width: 5px;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar-dark::-webkit-scrollbar-thumb {
+    background-color: rgb(74, 58, 95);
+  }
+}
+
 :root {
---background: blanchedalmond;
+--background: rgb(245, 237, 237);
 --primary-text-color: black;
 --toggle-bg: ;
 --toggle-fg: ;
