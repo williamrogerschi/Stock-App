@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import ThemeContext from "../context/ThemeContext";
 import StockContext from "../context/StockContext";
-import { fetchHistoricalData, basePath, apiKey } from "../api/stock-api";
+// import { fetchHistoricalData } from "../api/stock-api";
 import {
   createDate,
   convertDateToUnixTimestamp,
@@ -49,30 +49,27 @@ const Chart = () => {
       return { startTimestampUnix, endTimestampUnix };
     };
 
-    const updateChartData = async () => {
-      try {
-        const { startTimestampUnix, endTimestampUnix } = getDateRange();
-        const resolution = chartConfig[filter].resolution;
+    // const updateChartData = async () => {
+    //   try {
+    //     const { startTimestampUnix, endTimestampUnix } = getDateRange();
+    //     const resolution = chartConfig[filter].resolution;
 
-        const apiUrl = `${basePath}/stock/candle?symbol=${stockSymbol}&resolution=${resolution}&from=${startTimestampUnix}&to=${endTimestampUnix}&token=${apiKey}`
-        console.log('API URL:', apiUrl)
+    //     const result = await fetchHistoricalData(
+    //       stockSymbol,
+    //       resolution,
+    //       startTimestampUnix,
+    //       endTimestampUnix
+    //     );
 
-        const result = await fetchHistoricalData(
-          stockSymbol,
-          resolution,
-          startTimestampUnix,
-          endTimestampUnix
-        );
+    //     console.log('API Response:', result)
+    //     setData(formatData(result));
+    //   } catch (error) {
+    //     setData([]);
+    //     console.log(error);
+    //   }
+    // };
 
-        console.log('API Response:', result)
-        setData(formatData(result));
-      } catch (error) {
-        setData([]);
-        console.log(error);
-      }
-    };
-
-    updateChartData();
+    // updateChartData();
   }, [stockSymbol, filter]);
 
   return (

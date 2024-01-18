@@ -15,8 +15,8 @@ const Search = () => {
         try {
             if(input) {
                 const searchResults = await searchSymbol(input)
-                const result = searchResults.result
-                setBestMatches(result)
+                const bestMatchesArray = searchResults.bestMatches
+                setBestMatches(bestMatchesArray)
             }
         } catch(error) {
             setBestMatches([])

@@ -1,52 +1,72 @@
-export const basePath = 'https://finnhub.io/api/v1'
-export const apiKey = 'cmk9m6hr01qi6gquq3h0cmk9m6hr01qi6gquq3hg'
+export const basePath = 'https://www.alphavantage.co'
+export const apiKey = '0RS0J59QOI8DVGGE'
 
 
-export const searchSymbol = async (query) => {
-    const url = `${basePath}/search?q=${query}&token=${apiKey}`
+
+export const searchSymbol = async (stockSymbol) => {
+  const url = `${basePath}/query?function=SYMBOL_SEARCH&keywords=${stockSymbol}&apikey=${apiKey}`
+  try {
     const response = await fetch(url)
-    console.log('searchSymbol:', response)
-  
+    
     if (!response.ok) {
-      const message = `An error has occured: ${response.status}`;
-      throw new Error(message);
+      const message = `An error has occurred: ${response.status}`
+      throw new Error(message)
     }
-  
-    return await response.json();
-  };
+
+    const data = await response.json()
+    console.log('searchSymbol:', data)
+
+    return data
+  } catch (error) {
+    console.error('Error fetching symbol:', error)
+    throw error;
+  }
+}
+
+
 
   export const fetchStockDetails = async (stockSymbol) => {
-    const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=${apiKey}`
+    const url = `${basePath}/function=OVERVIEW&symbol=${stockSymbol}&apikey=${apiKey}`
     const response = await fetch(url)
     console.log('fetchStockDetails:', response)
   
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`
-      throw new Error(message);
-    }
-  
-    return await response.json();
-  };
-  
-  export const fetchQuote = async (stockSymbol) => {
-    const url = `${basePath}/quote?symbol=${stockSymbol}&token=${apiKey}`;
-    const response = await fetch(url);
-    console.log('fetchQuote:', response)
-  
-    if (!response.ok) {
-      const message = `An error has occured: ${response.status}`;
-      throw new Error(message);
+      throw new Error(message)
     }
   
     return await response.json();
   }
+
+
   
+export const fetchQuote = async (stockSymbol) => {
+  const url = `${basePath}/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${apiKey}`
+  const response = await fetch(url)
+
+  if(!response.ok) {
+    const message = `An error has occured: ${response.status}`
+    throw new Error(message)
+  }
+
+  const data = await response.json()
+  console.log(data)
+
+  if (data && data['Global Quote']) {
+    return data
+  } else {
+    throw new Error('Invalid response format for quote data')
+  }
+}
+  
+
+
 
   export const fetchHistoricalData = async ( stockSymbol, resolution, from, to ) => {
     const encodedSymbol = encodeURIComponent(stockSymbol)
     console.log('encdoed:', encodedSymbol)
 
-    const url = `${basePath}/stock/candle?symbol=${stockSymbol}&resolution=${resolution}&from=${from}&to=${to}&token=${apiKey}`;
+    const url = `${basePath}/stock/candle?symbol=${stockSymbol}&resolution=${resolution}&from=${from}&to=${to}&token=${apiKey}`
     const response = await fetch(url)
     console.log('fetchHistoricalData:', response)
   
@@ -55,6 +75,6 @@ export const searchSymbol = async (query) => {
       throw new Error(message)
     }
   
-    return await response.json();
+    return await response.json()
   }
   

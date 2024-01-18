@@ -3,8 +3,8 @@ import StockContext from "../context/StockContext";
 import ThemeContext from "../context/ThemeContext";
 
 const SearchResults = ({ results }) => {
-  const { darkMode } = useContext(ThemeContext);
 
+  const { darkMode } = useContext(ThemeContext);
   const { setStockSymbol } = useContext(StockContext);
 
   return (
@@ -16,16 +16,17 @@ const SearchResults = ({ results }) => {
       }`}
     >
       {results.map((item) => {
+
         return (
           <li
-            key={item.symbol}
-            className={`cursor-pointer p-4 m-2 flex items-center justify-between rounded-md ${
+            key={item['1. symbol']}
+            className={`cursor-pointer p-2 m-1 flex items-center justify-between rounded-md ${
               darkMode ? "hover:bg-indigo-600" : "hover:bg-indigo-200 "
             } transition duration-300`}
-            onClick={() => setStockSymbol(item.symbol)}
+            onClick={() => setStockSymbol(item['1. symbol'])}
           >
-            <span>{item.symbol}</span>
-            <span>{item.description}</span>
+            <span>{item['1. symbol']}</span>
+            <span className="text-sm">{item['2. name']}</span>
           </li>
         );
       })}
